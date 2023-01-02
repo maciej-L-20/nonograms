@@ -11,7 +11,7 @@ public class ImageProcessor {
         BufferedImage image = null;
         try {
             // Read in the original image
-            image = ImageIO.read(new File("C:\\Users\\Fujitsu\\IdeaProjects\\Nonograms\\src\\image.png"));
+            image = ImageIO.read(new File(""));
         } catch (IOException e) {
             System.out.println("Error reading image file.");
             return;

@@ -1,0 +1,10 @@
+# Default ignored files
+/shelf/
+/.idea/workspace.xml
+# Compiled class file
+*.class
+#Outfolder
+out/
+README.md
+Nonograms.iml
+/.idea/
