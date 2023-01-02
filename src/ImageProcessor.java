@@ -1,0 +1,67 @@
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+
+public class ImageProcessor {
+
+    private static int[][] pixelArray;
+
+    public ImageProcessor() {
+        BufferedImage image = null;
+        try {
+            // Read in the original image
+            image = ImageIO.read(new File("C:\\Users\\Fujitsu\\IdeaProjects\\Nonograms\\src\\image.png"));
+        } catch (IOException e) {
+            System.out.println("Error reading image file.");
+            return;
+        }
+
+        // Convert the image to 200x100 resolution
+        BufferedImage resizedImage = new BufferedImage(200, 100, BufferedImage.TYPE_INT_ARGB);
+        resizedImage.getGraphics().drawImage(image, 0, 0, 200, 100, null);
+
+        // Convert the image to black and white
+        for (int y = 0; y < resizedImage.getHeight(); y++) {
+            for (int x = 0; x < resizedImage.getWidth(); x++) {
+                int rgb = resizedImage.getRGB(x, y);
+                int r = (rgb >> 16) & 0xff;
+                int g = (rgb >> 8) & 0xff;
+                int b = rgb & 0xff;
+                int avg = (r + g + b) / 3;
+                if (avg < 128) {
+                    resizedImage.setRGB(x, y, 0xff000000); // white
+                } else {
+                    resizedImage.setRGB(x, y, 0xffffffff); // black
+                }
+            }
+        }
+
+        // Save the processed image
+        try {
+            ImageIO.write(resizedImage, "png", new File("processed_image.png"));
+        } catch (IOException e) {
+            System.out.println("Error saving image.");
+            return;
+        }
+
+        // Generate the 2D array
+        pixelArray = new int[200][100];
+        for (int y = 0; y < resizedImage.getHeight(); y++) {
+            for (int x = 0; x < resizedImage.getWidth(); x++) {
+                int rgb = resizedImage.getRGB(x, y);
+                int r = (rgb >> 16) & 0xff;
+                int g = (rgb >> 8) & 0xff;
+                int b = rgb & 0xff;
+                if (r == 0 && g == 0 && b == 0) {
+                    pixelArray[x][y] = 1;
+                } else {
+                    pixelArray[x][y] = 0;
+                }
+            }
+        }
+    }
+    public static int[][] getPixelArray() {
+        return pixelArray;
+    }
+}
