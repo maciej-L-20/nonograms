@@ -1,6 +1,6 @@
 # Default ignored files
 /shelf/
-/workspace.xml
+/.idea/workspace.xml
 # Compiled class file
 *.class
 #Outfolder
@@ -8,8 +8,3 @@ out/
 README.md
 Nonograms.iml
 /.idea/
-/misc.xml
-/apro1_22z_pro_4.4.iml
-/vcs.xml
-/workspace.xml
-/modules.xml
