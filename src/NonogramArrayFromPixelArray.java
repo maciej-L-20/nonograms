@@ -6,9 +6,9 @@ public class NonogramArrayFromPixelArray {
         int[][] pixelArray = ImageProcessor.getPixelArray();
 
         // Create the array of ArrayLists
-        ArrayList<Integer>[] data = new ArrayList[pixelArray.length + pixelArray[1].length];
-        for (int i = 0; i < data.length; i++) {
-            data[i] = new ArrayList<>();
+        ArrayList<Integer>[] nonogramArray = new ArrayList[pixelArray.length + pixelArray[1].length];
+        for (int i = 0; i < nonogramArray.length; i++) {
+            nonogramArray[i] = new ArrayList<>();
         }
 
         // Write the row data
@@ -20,13 +20,13 @@ public class NonogramArrayFromPixelArray {
                     count++;
                 } else {
                     if (count > 0) {
-                        data[index].add(count);
+                        nonogramArray[index].add(count);
                         count = 0;
                     }
                 }
             }
             if (count > 0) {
-                data[index].add(count);
+                nonogramArray[index].add(count);
             }
             index++;
         }
@@ -39,16 +39,16 @@ public class NonogramArrayFromPixelArray {
                     count++;
                 } else {
                     if (count > 0) {
-                        data[index].add(count);
+                        nonogramArray[index].add(count);
                         count = 0;
                     }
                 }
             }
             if (count > 0) {
-                data[index].add(count);
+                nonogramArray[index].add(count);
             }
             index++;
         }
-        new NonogramArrayTest(data, pixelArray[1].length);
+        new NonogramArrayTest(nonogramArray, pixelArray[1].length);
     }
 }
