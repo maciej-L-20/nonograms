@@ -11,7 +11,7 @@ public class ImageProcessor {
         BufferedImage image = null;
         try {
             // Read in the original image
-            image = ImageIO.read(new File(""));
+            image = ImageIO.read(new File("C:\\Users\\Fujitsu\\IdeaProjects\\apro1_22z_pro_4.4\\src\\image.png"));
         } catch (IOException e) {
             System.out.println("Error reading image file.");
             return;
