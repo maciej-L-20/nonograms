@@ -7,7 +7,7 @@ public class ImageProcessor {
 
     private static int[][] pixelArray;
 
-    public ImageProcessor(String filepath) {
+    public ImageProcessor(String filepath, int columns, int rows) {
         BufferedImage image = null;
         try {
             // Read in the original image
@@ -17,9 +17,9 @@ public class ImageProcessor {
             return;
         }
 
-        // Convert the image to 200x100 resolution
-        BufferedImage resizedImage = new BufferedImage(200, 100, BufferedImage.TYPE_INT_ARGB);
-        resizedImage.getGraphics().drawImage(image, 0, 0, 200, 100, null);
+        // Convert the image to given resolution
+        BufferedImage resizedImage = new BufferedImage(columns, rows, BufferedImage.TYPE_INT_ARGB);
+        resizedImage.getGraphics().drawImage(image, 0, 0, rows, columns, null);
 
         // Convert the image to black and white
         for (int y = 0; y < resizedImage.getHeight(); y++) {
@@ -46,7 +46,7 @@ public class ImageProcessor {
         }
 
         // Generate the 2D array
-        pixelArray = new int[200][100];
+        pixelArray = new int[columns][rows];
         for (int y = 0; y < resizedImage.getHeight(); y++) {
             for (int x = 0; x < resizedImage.getWidth(); x++) {
                 int rgb = resizedImage.getRGB(x, y);
