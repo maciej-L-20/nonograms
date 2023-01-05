@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class NonogramArrayFromPixelArray {
     public static void main(String[] args) {
-        new ImageProcessor();
+        new ImageProcessor("C:\\Users\\Fujitsu\\IdeaProjects\\apro1_22z_pro_4.4\\src\\image.png");
         int[][] pixelArray = ImageProcessor.getPixelArray();
 
         // Create the array of ArrayLists

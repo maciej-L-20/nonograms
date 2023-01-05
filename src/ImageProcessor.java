@@ -7,11 +7,11 @@ public class ImageProcessor {
 
     private static int[][] pixelArray;
 
-    public ImageProcessor() {
+    public ImageProcessor(String filepath) {
         BufferedImage image = null;
         try {
             // Read in the original image
-            image = ImageIO.read(new File("C:\\Users\\Fujitsu\\IdeaProjects\\apro1_22z_pro_4.4\\src\\image.png"));
+            image = ImageIO.read(new File(filepath));
         } catch (IOException e) {
             System.out.println("Error reading image file.");
             return;
@@ -39,7 +39,7 @@ public class ImageProcessor {
 
         // Save the processed image
         try {
-            ImageIO.write(resizedImage, "png", new File("processed_image.png"));
+            ImageIO.write(resizedImage, "png", new File(filepath + "_processed.png"));
         } catch (IOException e) {
             System.out.println("Error saving image.");
             return;
@@ -64,4 +64,5 @@ public class ImageProcessor {
     public static int[][] getPixelArray() {
         return pixelArray;
     }
+
 }
