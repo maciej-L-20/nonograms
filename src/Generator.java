@@ -1,8 +1,16 @@
-public class Generator extends NonogramArrayFromPixelArray {
-    Generator(String path,int columns, int rows){
-        super(path, columns, rows);
+import java.util.Scanner;
+
+public class Generator {
+    Generator(){
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Type the picture path");
+        String path = scanner.nextLine();
+        System.out.println("Type the number of columns and rows");
+        int columns= scanner.nextInt();
+        int rows= scanner.nextInt();
+        NonogramArrayFromPixelArray nonogram = new NonogramArrayFromPixelArray(path,columns,rows);
     }
     public static void main(String[] args) {
-        Generator generator = new Generator("Zrzut ekranu 2023-01-5 o 17.05.04.png", 100, 120);
+        Generator generator = new Generator();
     }
 }
