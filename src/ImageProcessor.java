@@ -19,7 +19,7 @@ public class ImageProcessor {
 
         // Convert the image to given resolution
         BufferedImage resizedImage = new BufferedImage(columns, rows, BufferedImage.TYPE_INT_ARGB);
-        resizedImage.getGraphics().drawImage(image, 0, 0, rows, columns, null);
+        resizedImage.getGraphics().drawImage(image, 0, 0, columns, rows, null);
 
         // Convert the image to black and white
         for (int y = 0; y < resizedImage.getHeight(); y++) {
