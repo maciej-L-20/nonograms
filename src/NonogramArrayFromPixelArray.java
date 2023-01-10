@@ -51,5 +51,6 @@ public class NonogramArrayFromPixelArray {
             index++;
         }
         new NonogramArrayTest(nonogramArray, pixelArray[1].length);
+        //NonogramExcelExporter.exportNonogram(nonogramArray,"Nonogram");
     }
 }
