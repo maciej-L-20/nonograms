@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class NonogramArrayDisplay {
     public NonogramArrayDisplay(ArrayList<Integer>[] data, int columns) {
-        System.out.println("Successful nonogram generation!");
+        System.out.println("Enjoy your nonogram!");
         // Print the row data
         System.out.println("Row data:");
         for (int i = 0; i < columns; i++) {

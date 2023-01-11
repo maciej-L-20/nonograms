@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
 public class NonogramArrayFromPixelArray {
-    NonogramArrayFromPixelArray(){}
     NonogramArrayFromPixelArray(String path, int columns, int rows){
         new ImageProcessor(path, columns, rows);
         int[][] pixelArray = ImageProcessor.getPixelArray();
@@ -55,7 +54,7 @@ public class NonogramArrayFromPixelArray {
     }
     //Constructor for choosing the level
     NonogramArrayFromPixelArray(String path, int level){
-        new ImageProcessor(path, level);
+        ImageProcessor imageProcessor = new ImageProcessor(path, level);
         int[][] pixelArray = ImageProcessor.getPixelArray();
 
         // Create the array of ArrayLists
