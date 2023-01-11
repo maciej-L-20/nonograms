@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
-public class NonogramArrayTest {
-    public NonogramArrayTest(ArrayList<Integer>[] data, int columns) {
+public class NonogramArrayDisplay {
+    public NonogramArrayDisplay(ArrayList<Integer>[] data, int columns) {
         System.out.println("Successful nonogram generation!");
         // Print the row data
         System.out.println("Row data:");

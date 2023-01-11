@@ -16,7 +16,6 @@ public class ImageProcessor {
             System.out.println("Error reading image file.");
             return;
         }
-
         // Convert the image to given resolution
         BufferedImage resizedImage = new BufferedImage(columns, rows, BufferedImage.TYPE_INT_ARGB);
         resizedImage.getGraphics().drawImage(image, 0, 0, columns, rows, null);
@@ -47,6 +46,71 @@ public class ImageProcessor {
 
         // Generate the 2D array
         pixelArray = new int[columns][rows];
+        for (int y = 0; y < resizedImage.getHeight(); y++) {
+            for (int x = 0; x < resizedImage.getWidth(); x++) {
+                int rgb = resizedImage.getRGB(x, y);
+                int r = (rgb >> 16) & 0xff;
+                int g = (rgb >> 8) & 0xff;
+                int b = rgb & 0xff;
+                if (r == 0 && g == 0 && b == 0) {
+                    pixelArray[x][y] = 1;
+                } else {
+                    pixelArray[x][y] = 0;
+                }
+            }
+        }
+    }
+    //Another constructor for choosing the level instead of size
+    public ImageProcessor(String filepath, int level) {
+        BufferedImage image = null;
+        try {
+            // Read in the original image
+            image = ImageIO.read(new File(filepath));
+        } catch (IOException e) {
+            System.out.println("Error reading image file.");
+            return;
+        }
+        //Convert levels to sizes
+        int sizes[]={10,30,50,100};
+        int originalWidth= image.getWidth();
+        int originalHeigth = image.getHeight();
+        int largerDimension;
+        if (originalHeigth>=originalWidth) {largerDimension=originalHeigth;}
+        else {largerDimension=originalWidth;}
+        int scale=sizes[level]/largerDimension;
+        int processedHeight=originalHeigth*scale;
+        int processedWidth=originalWidth*scale;
+
+        // Convert the image to given resolution
+        BufferedImage resizedImage = new BufferedImage(processedWidth, processedHeight, BufferedImage.TYPE_INT_ARGB);
+        resizedImage.getGraphics().drawImage(image, 0, 0, processedWidth, processedHeight, null);
+
+        // Convert the image to black and white
+        for (int y = 0; y < resizedImage.getHeight(); y++) {
+            for (int x = 0; x < resizedImage.getWidth(); x++) {
+                int rgb = resizedImage.getRGB(x, y);
+                int r = (rgb >> 16) & 0xff;
+                int g = (rgb >> 8) & 0xff;
+                int b = rgb & 0xff;
+                int avg = (r + g + b) / 3;
+                if (avg < 128) {
+                    resizedImage.setRGB(x, y, 0xff000000); // white
+                } else {
+                    resizedImage.setRGB(x, y, 0xffffffff); // black
+                }
+            }
+        }
+
+        // Save the processed image
+        try {
+            ImageIO.write(resizedImage, "png", new File(filepath + "_processed.png"));
+        } catch (IOException e) {
+            System.out.println("Error saving image.");
+            return;
+        }
+
+        // Generate the 2D array
+        pixelArray = new int[processedWidth][processedHeight];
         for (int y = 0; y < resizedImage.getHeight(); y++) {
             for (int x = 0; x < resizedImage.getWidth(); x++) {
                 int rgb = resizedImage.getRGB(x, y);
