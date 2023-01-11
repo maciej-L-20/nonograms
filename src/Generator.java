@@ -1,17 +1,23 @@
+import javax.imageio.ImageIO;
+import java.io.File;
 import java.util.Scanner;
 
 public class Generator {
-    Generator(){
-        Scanner scanner=new Scanner(System.in);
+    Generator() {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Type the picture path");
         String path = scanner.nextLine();
+        existingChecker(path);
         System.out.println("Type any number if you want to choose level or type 0 if you want to choose sizes manually.");
-        if(scanner.nextInt()==0) {
-            sizeGenerator(scanner,path);
-        }
-        else {
-            levelGenerator(scanner, path);
-        }
+            if (scanner.nextInt() == 0) {
+                sizeGenerator(scanner, path);
+            } else {
+                levelGenerator(scanner, path);
+            }
+    }
+
+    public static void main(String[] args) {
+        new Generator();
     }
     //Method to let a user choose the level
     private void levelGenerator(Scanner scanner, String path){
@@ -31,7 +37,12 @@ public class Generator {
         int rows = scanner.nextInt();
         new NonogramArrayFromPixelArray(path, columns, rows);
     }
-    public static void main(String[] args) {
-        new Generator();
+    //Checks file existance
+    private void existingChecker(String path){
+        File file = new File(path);
+        if (!file.exists()) {
+            System.out.println("File not found");
+            new Generator();
+        }
     }
 }
