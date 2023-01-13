@@ -19,7 +19,7 @@ public class Generator {
     public static void main(String[] args) {
         new Generator();
     }
-    //Method to let a user choose the level
+    //Method to let a user choose the levelZrzut ekranu 2023-01-10 o 10.37.57.png_processed.png
     private void levelGenerator(Scanner scanner, String path){
         System.out.println("Choose level from 0-3.");
         int level=scanner.nextInt();
