@@ -41,7 +41,10 @@ public class NonogramExcelExporter {
             String columnHeader = "Column " + (i + 1 - columns);
             StringBuilder columnData = new StringBuilder();
             for (int j = 0; j < nonogramArray[i].size(); j++) {
-                columnData.append(nonogramArray[i].get(j) + " ");
+                columnData.append(nonogramArray[i].get(j) + ", ");
+            }
+            if (columnData.length() > 0 && columnData.charAt(columnData.length() - 2) == ',') {
+                columnData.deleteCharAt(columnData.length() - 2);
             }
             headerRowCell.setCellValue(columnHeader);
             dataCell.setCellValue(columnData.toString());
@@ -55,7 +58,10 @@ public class NonogramExcelExporter {
             String rowHeader= "Row " + (i + 1);
             StringBuilder rowData= new StringBuilder();
             for (int j = 0; j < nonogramArray[i].size(); j++) {
-                rowData.append(nonogramArray[i].get(j) + " ");
+                rowData.append(nonogramArray[i].get(j) + ", ");
+            }
+            if (rowData.length() > 0 && rowData.charAt(rowData.length() - 2) == ',') {
+                rowData.deleteCharAt(rowData.length() - 2);
             }
             headerCell.setCellValue(rowHeader);
             dataCell.setCellValue(rowData.toString());
