@@ -3,7 +3,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-public class ImageProcessor {
+public class  ImageProcessor {
 
     private static int[][] pixelArray;
 
@@ -21,7 +21,7 @@ public class ImageProcessor {
         resizedImage.getGraphics().drawImage(image, 0, 0, columns, rows, null);
 
         // Convert the image to black and white
-        resizedImage=toMonochromatic(resizedImage);
+        resizedImage = toMonochromatic(resizedImage);
 
         // Save the processed image
         try {
@@ -53,7 +53,7 @@ public class ImageProcessor {
         BufferedImage resizedImage = new BufferedImage(processedWidth, processedHeight, BufferedImage.TYPE_INT_ARGB);
         resizedImage.getGraphics().drawImage(image, 0, 0, processedWidth, processedHeight, null);
         // Convert to black and white
-        resizedImage=toMonochromatic(resizedImage);
+        resizedImage = toMonochromatic(resizedImage);
 
         // Save the processed image
         try {
@@ -85,8 +85,8 @@ public class ImageProcessor {
         return image;
     }
     private int[][] pixelArrayGenerator(BufferedImage image){
-        int width= image.getWidth();
-        int height=image.getHeight();
+        int width = image.getWidth();
+        int height = image.getHeight();
         // Generate the 2D array
         pixelArray = new int[width][height];
         for (int y = 0; y < image.getHeight(); y++) {

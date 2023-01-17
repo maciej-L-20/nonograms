@@ -12,9 +12,9 @@ public class NonogramExcelExporter {
     private int columns;
     private String fileName;
     NonogramExcelExporter(ArrayList<Integer>[] nonogramArray, int columns,String fileName){
-        this.nonogramArray=nonogramArray;
-        this.columns=columns;
-        this.fileName=fileName;
+        this.nonogramArray = nonogramArray;
+        this.columns = columns;
+        this.fileName = fileName;
         Workbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("Nonogram");
         writeColumnData(this.nonogramArray,this.columns,sheet);
@@ -22,19 +22,19 @@ public class NonogramExcelExporter {
         for (int i = 0; i <columns ; i++) {
             sheet.autoSizeColumn(i);
         }
-        saveFile(this.fileName,workbook);
+        saveFile(this.fileName, workbook);
     }
 
     private void saveFile(String fileName, Workbook workbook){
         try (FileOutputStream outputStream = new FileOutputStream(fileName)) {
             workbook.write(outputStream);
-        } catch (IOException e) {
+        } catch(IOException e) {
             System.out.println("Error saving Excel file.");
         }
     }
-    public void writeColumnData(ArrayList<Integer>[] nonogramArray, int columns,Sheet sheet){
-        Row headerRow= sheet.createRow(0);
-        Row dataRow= sheet.createRow(1);
+    public void writeColumnData(ArrayList<Integer>[] nonogramArray, int columns,Sheet sheet) {
+        Row headerRow = sheet.createRow(0);
+        Row dataRow = sheet.createRow(1);
         for (int i = columns; i < nonogramArray.length; i++) {
             Cell headerRowCell = headerRow.createCell(i+2-columns);
             Cell dataCell = dataRow.createCell(i+2-columns);
@@ -52,7 +52,7 @@ public class NonogramExcelExporter {
             Row newRow = sheet.createRow(i+2);
             Cell headerCell= newRow.createCell(0);
             Cell dataCell= newRow.createCell(1);
-            String rowHeader="Row " + (i+1);
+            String rowHeader= "Row " + (i + 1);
             StringBuilder rowData= new StringBuilder();
             for (int j = 0; j < nonogramArray[i].size(); j++) {
                 rowData.append(nonogramArray[i].get(j) + " ");

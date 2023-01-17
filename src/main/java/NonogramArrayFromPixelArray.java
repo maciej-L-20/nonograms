@@ -49,8 +49,6 @@ public class NonogramArrayFromPixelArray {
             }
             index++;
         }
-        new NonogramArrayDisplay(nonogramArray, pixelArray[1].length);
-        //NonogramExcelExporter.exportNonogram(nonogramArray,"Nonogram");
     }
     //Constructor for choosing the level
     NonogramArrayFromPixelArray(String path, int level){
@@ -102,6 +100,6 @@ public class NonogramArrayFromPixelArray {
             index++;
         }
         new NonogramArrayDisplay(nonogramArray, pixelArray[1].length);
-        new NonogramExcelExporter(nonogramArray,pixelArray[1].length,"Nonogram");
+        new NonogramExcelExporter(nonogramArray, pixelArray[1].length,"Nonogram");
     }
 }
