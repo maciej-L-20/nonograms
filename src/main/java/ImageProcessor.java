@@ -114,6 +114,6 @@ public class  ImageProcessor {
         int originalWidth = image.getWidth();
         int originalHeight = image.getHeight();
         int largerDimension = Math.max(originalHeight, originalWidth);
-        return  (double) sizes[level] / largerDimension;
+        return  (double) sizes[level-1] / largerDimension;
     }
 }
