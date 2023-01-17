@@ -99,7 +99,7 @@ public class NonogramArrayFromPixelArray {
             }
             index++;
         }
-        new NonogramArrayDisplay(nonogramArray, pixelArray[1].length);
         new NonogramExcelExporter(nonogramArray, pixelArray[1].length,"Nonogram");
+        new NonogramArrayDisplay(nonogramArray, pixelArray[1].length);
     }
 }

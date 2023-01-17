@@ -29,6 +29,7 @@ public class Generator {
         } else {
             new NonogramArrayFromPixelArray(path, level);
         }
+        return;
     }
     //Method to let a user choose the size
     private void sizeGenerator(Scanner scanner, String path){
@@ -36,6 +37,7 @@ public class Generator {
         int columns = scanner.nextInt();
         int rows = scanner.nextInt();
         new NonogramArrayFromPixelArray(path, columns, rows);
+        return;
     }
     //Checks file existance
     private void existingChecker(String path){

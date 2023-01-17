@@ -3,6 +3,8 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,6 +13,7 @@ public class NonogramExcelExporter {
     private ArrayList<Integer>[] nonogramArray;
     private int columns;
     private String fileName;
+    private String path;
     NonogramExcelExporter(ArrayList<Integer>[] nonogramArray, int columns,String fileName){
         this.nonogramArray = nonogramArray;
         this.columns = columns;
@@ -22,15 +25,23 @@ public class NonogramExcelExporter {
         for (int i = 0; i <columns ; i++) {
             sheet.autoSizeColumn(i);
         }
-        saveFile(this.fileName, workbook);
+        this.path=saveFile(this.fileName, workbook);
+        System.out.println("Your nonogram is saved as Excel file to path: "+this.getPath());
     }
 
-    private void saveFile(String fileName, Workbook workbook){
-        try (FileOutputStream outputStream = new FileOutputStream(fileName)) {
+    public String getPath() {
+        return path;
+    }
+
+    private String saveFile(String fileName, Workbook workbook){
+        File myFile = new File(fileName + ".xls");
+        try (FileOutputStream outputStream = new FileOutputStream(myFile)) {
             workbook.write(outputStream);
         } catch(IOException e) {
             System.out.println("Error saving Excel file.");
         }
+        String absolutePath = myFile.getAbsolutePath();
+        return absolutePath;
     }
     public void writeColumnData(ArrayList<Integer>[] nonogramArray, int columns,Sheet sheet) {
         Row headerRow = sheet.createRow(0);
