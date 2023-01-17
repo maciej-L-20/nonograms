@@ -34,7 +34,7 @@ public class NonogramExcelExporter {
     }
 
     private String saveFile(String fileName, Workbook workbook){
-        File myFile = new File(fileName + ".xls");
+        File myFile = new File(fileName + ".xlsx");
         try (FileOutputStream outputStream = new FileOutputStream(myFile)) {
             workbook.write(outputStream);
         } catch(IOException e) {
