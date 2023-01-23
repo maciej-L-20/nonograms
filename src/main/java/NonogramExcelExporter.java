@@ -12,7 +12,7 @@ public class NonogramExcelExporter {
     private String fileName;
     private String path;
 
-    NonogramExcelExporter(ArrayList<Integer>[] nonogramArray, int columns,String fileName){
+    NonogramExcelExporter(ArrayList<Integer>[] nonogramArray, int columns, String fileName){
         this.nonogramArray = nonogramArray;
         this.columns = columns;
         this.fileName = fileName;
@@ -20,8 +20,8 @@ public class NonogramExcelExporter {
         Sheet sheet = workbook.createSheet("Nonogram");
         CellStyle collumnStyle = workbook.createCellStyle();
         CellStyle rowStyle = workbook.createCellStyle();
-        writeColumnData(this.nonogramArray,this.columns,sheet,collumnStyle);
-        writeRowData(this.nonogramArray,this.columns,sheet,rowStyle);
+        writeColumnData(this.nonogramArray, this.columns, sheet,collumnStyle);
+        writeRowData(this.nonogramArray, this.columns, sheet, rowStyle);
         sheet.autoSizeColumn(1);
         for (int i = 2; i <columns+30 ; i++) {
             sheet.setColumnWidth(i,4 * 256);
@@ -45,12 +45,12 @@ public class NonogramExcelExporter {
 
         return absolutePath;
     }
-    public void writeColumnData(ArrayList<Integer>[] nonogramArray, int columns,Sheet sheet,CellStyle style) {
+    public void writeColumnData(ArrayList<Integer>[] nonogramArray, int columns, Sheet sheet, CellStyle style) {
         Row headerRow = sheet.createRow(0);
         Row dataRow = sheet.createRow(1);
         for (int i = columns; i < nonogramArray.length; i++) {
-            Cell headerRowCell = headerRow.createCell(i+2-columns);
-            Cell dataCell = dataRow.createCell(i+2-columns);
+            Cell headerRowCell = headerRow.createCell(i + 2 - columns);
+            Cell dataCell = dataRow.createCell(i + 2 - columns);
             String columnHeader = String.valueOf((i + 1 - columns));
             StringBuilder columnData = new StringBuilder();
             for (int j = 0; j < nonogramArray[i].size(); j++) {
@@ -77,7 +77,7 @@ public class NonogramExcelExporter {
             dataCell.setCellStyle(style);
         }
     }
-    public void writeRowData(ArrayList<Integer>[] nonogramArray, int columns,Sheet sheet, CellStyle style){
+    public void writeRowData(ArrayList<Integer>[] nonogramArray, int columns, Sheet sheet, CellStyle style){
         for (int i = 0; i < columns; i++) {
             Row newRow = sheet.createRow(i+2);
             Cell headerCell= newRow.createCell(0);
