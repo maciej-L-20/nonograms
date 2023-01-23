@@ -20,8 +20,9 @@ public class NonogramExcelExporter {
         Sheet sheet = workbook.createSheet("Nonogram");
         CellStyle columnStyle = workbook.createCellStyle();
         CellStyle rowStyle = workbook.createCellStyle();
+        CellStyle emptyStyle = workbook.createCellStyle();
         writeColumnData(this.nonogramArray, this.columns, sheet,columnStyle);
-        writeRowData(this.nonogramArray, this.columns, sheet, rowStyle);
+        writeRowData(this.nonogramArray, this.columns, sheet, rowStyle, emptyStyle);
         sheet.autoSizeColumn(1);
         for (int i = 2; i <columns+30 ; i++) {
             sheet.setColumnWidth(i,3 * 256);
@@ -70,20 +71,36 @@ public class NonogramExcelExporter {
             style.setRightBorderColor(IndexedColors.BLACK.getIndex());
             style.setBorderTop(BorderStyle.THIN);
             style.setTopBorderColor(IndexedColors.BLACK.getIndex());
-            style.setFillBackgroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+            style.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+            style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+            style.setAlignment(HorizontalAlignment.CENTER);
 
             headerRowCell.setCellValue(columnHeader);
             dataCell.setCellValue(columnData.toString());
             dataCell.setCellStyle(style);
         }
     }
-    public void writeRowData(ArrayList<Integer>[] nonogramArray, int columns, Sheet sheet, CellStyle style){
+    public void writeRowData(ArrayList<Integer>[] nonogramArray, int columns, Sheet sheet, CellStyle style, CellStyle emptyStyle){
         for (int i = 0; i < columns; i++) {
-            Row newRow = sheet.createRow(i+2);
-            Cell headerCell= newRow.createCell(0);
-            Cell dataCell= newRow.createCell(1);
-            String rowHeader= String.valueOf((i + 1));
-            StringBuilder rowData= new StringBuilder();
+            Row newRow = sheet.createRow(i + 2);
+            Cell headerCell = newRow.createCell(0);
+            Cell dataCell = newRow.createCell(1);
+            for (int n = 0; n < nonogramArray.length - columns; n++) {
+                Cell emptyCell = newRow.createCell(n + 2);
+
+                emptyStyle.setBorderBottom(BorderStyle.THIN);
+                emptyStyle.setBottomBorderColor(IndexedColors.BLACK.getIndex());
+                emptyStyle.setBorderLeft(BorderStyle.THIN);
+                emptyStyle.setLeftBorderColor(IndexedColors.BLACK.getIndex());
+                emptyStyle.setBorderRight(BorderStyle.THIN);
+                emptyStyle.setRightBorderColor(IndexedColors.BLACK.getIndex());
+                emptyStyle.setBorderTop(BorderStyle.THIN);
+                emptyStyle.setTopBorderColor(IndexedColors.BLACK.getIndex());
+
+                emptyCell.setCellStyle(emptyStyle);
+            }
+            String rowHeader = String.valueOf((i + 1));
+            StringBuilder rowData = new StringBuilder();
             for (int j = 0; j < nonogramArray[i].size(); j++) {
                 rowData.append(nonogramArray[i].get(j) + ", ");
             }
@@ -100,7 +117,9 @@ public class NonogramExcelExporter {
             style.setRightBorderColor(IndexedColors.BLACK.getIndex());
             style.setBorderTop(BorderStyle.THIN);
             style.setTopBorderColor(IndexedColors.BLACK.getIndex());
-            style.setFillBackgroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+            style.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+            style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+            style.setAlignment(HorizontalAlignment.RIGHT);
 
 
             headerCell.setCellValue(rowHeader);
