@@ -22,6 +22,7 @@ public class NonogramExcelExporter {
         CellStyle rowStyle = workbook.createCellStyle();
         writeColumnData(this.nonogramArray,this.columns,sheet,collumnStyle);
         writeRowData(this.nonogramArray,this.columns,sheet,rowStyle);
+        sheet.autoSizeColumn(1);
         for (int i = 2; i <columns+30 ; i++) {
             sheet.setColumnWidth(i,4 * 256);
         }
