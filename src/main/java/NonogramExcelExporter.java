@@ -18,9 +18,9 @@ public class NonogramExcelExporter {
         this.fileName = fileName;
         Workbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("Nonogram");
-        CellStyle collumnStyle = workbook.createCellStyle();
+        CellStyle columnStyle = workbook.createCellStyle();
         CellStyle rowStyle = workbook.createCellStyle();
-        writeColumnData(this.nonogramArray, this.columns, sheet,collumnStyle);
+        writeColumnData(this.nonogramArray, this.columns, sheet,columnStyle);
         writeRowData(this.nonogramArray, this.columns, sheet, rowStyle);
         sheet.autoSizeColumn(1);
         for (int i = 2; i <columns+30 ; i++) {
