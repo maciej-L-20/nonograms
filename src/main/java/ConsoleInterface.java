@@ -1,0 +1,131 @@
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class ConsoleInterface {
+    ConsoleInterface() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Type 1 for nonogram generator, 2 for nonogram solver, 3 for nonogram generator that tests the output");
+        int temp = scanner.nextInt();
+        if (temp == 1) {
+            generator();
+        } else if (temp == 2) {
+            solver();
+        } else if (temp == 3) {
+            generatorWithSolver();
+        }
+    }
+
+    private void generator() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Type the picture path");
+        String path = scanner.nextLine();
+        existingChecker(path);
+        System.out.println("Type any number if you want to choose level or type 0 if you want to choose sizes manually.");
+            if (scanner.nextInt() == 0) {
+                sizeGenerator(scanner, path);
+            } else {
+                levelGenerator(scanner, path);
+            }
+    }
+
+    private void solver() {
+        Scanner scanner = new Scanner(System.in);
+        String path = scanner.nextLine();
+        existingChecker(path);
+        System.out.println("Type any number if you want to choose level or type 0 if you want to choose sizes manually.");
+        if (scanner.nextInt() == 1) {
+            sizeGenerator(scanner, path);
+        } else if (scanner.nextInt() == 2) {
+            levelGenerator(scanner, path);
+        } else if (scanner.nextInt() == 3) {
+            levelGenerator(scanner, path);
+        }
+    }
+
+    private void generatorWithSolver() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Type the picture path");
+        String path = scanner.nextLine();
+        existingChecker(path);
+        System.out.println("Type any number if you want to choose level or type 0 if you want to choose sizes manually.");
+        if (scanner.nextInt() == 0) {
+            sizeGeneratorWithSolver(scanner, path);
+
+        } else {
+            levelGeneratorWithSolver(scanner, path);
+        }
+    }
+
+    public static void main(String[] args) {
+        new ConsoleInterface();
+    }
+    //Method to let a user choose the level
+    private void levelGenerator(Scanner scanner, String path) {
+        System.out.println("Choose level from 1-4.");
+        int level = scanner.nextInt();
+        ArrayList<Integer>[] nonogramArray = new ArrayList[0];
+        int[][] pixelArray = new int[0][0];
+        if (level <= 0 || level > 4) {
+            System.out.println("You need to choose a level from 0 to 3");
+            levelGenerator(scanner, path);
+        } else {
+            new NonogramArrayFromPixelArray(path, level);
+            nonogramArray = NonogramArrayFromPixelArray.getNonogramArray();
+            pixelArray = NonogramArrayFromPixelArray.getPixelArray();
+        }
+        new NonogramExcelExporter(nonogramArray, pixelArray[1].length, "Nonogram");
+        new NonogramArrayDisplay(nonogramArray, pixelArray[1].length);
+    }
+
+    private void levelGeneratorWithSolver(Scanner scanner, String path) {
+        System.out.println("Choose level from 1-4.");
+        int level = scanner.nextInt();
+        ArrayList<Integer>[] nonogramArray = new ArrayList[0];
+        int[][] pixelArray = new int[0][0];
+        if (level <= 0 || level > 4) {
+            System.out.println("You need to choose a level from 0 to 3");
+            levelGenerator(scanner, path);
+        } else {
+            new NonogramArrayFromPixelArray(path, level);
+            nonogramArray = NonogramArrayFromPixelArray.getNonogramArray();
+            pixelArray = NonogramArrayFromPixelArray.getPixelArray();
+        }
+        new NonogramExcelExporter(nonogramArray, pixelArray[1].length, "Nonogram");
+        new NonogramArrayDisplay(nonogramArray, pixelArray[1].length);
+        new NonogramSolver(nonogramArray,pixelArray[1].length);
+    }
+
+    //Method to let a user choose the size
+    private void sizeGenerator(Scanner scanner, String path){
+        System.out.println("Type the number of columns and rows");
+        int columns = scanner.nextInt();
+        int rows = scanner.nextInt();
+        new NonogramArrayFromPixelArray(path, columns, rows);
+        ArrayList<Integer>[] nonogramArray = NonogramArrayFromPixelArray.getNonogramArray();
+        int[][] pixelArray = NonogramArrayFromPixelArray.getPixelArray();
+        new NonogramExcelExporter(nonogramArray, pixelArray[1].length, "Nonogram");
+        new NonogramArrayDisplay(nonogramArray, pixelArray[1].length);
+    }
+
+    private void sizeGeneratorWithSolver(Scanner scanner, String path) {
+        System.out.println("Type the number of columns and rows");
+        int columns = scanner.nextInt();
+        int rows = scanner.nextInt();
+        new NonogramArrayFromPixelArray(path, columns, rows);
+        ArrayList<Integer>[] nonogramArray = NonogramArrayFromPixelArray.getNonogramArray();
+        int[][] pixelArray = NonogramArrayFromPixelArray.getPixelArray();
+        new NonogramExcelExporter(nonogramArray, pixelArray[1].length, "Nonogram");
+        new NonogramArrayDisplay(nonogramArray, pixelArray[1].length);
+        new NonogramSolver(nonogramArray,pixelArray[1].length);
+    }
+
+    //Checks file existance
+    private void existingChecker(String path){
+        File file = new File(path);
+        if (!file.exists()) {
+            System.out.println("File not found");
+            new ConsoleInterface();
+        }
+    }
+}

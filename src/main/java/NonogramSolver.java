@@ -34,8 +34,8 @@ public class NonogramSolver {
         return new String[] {sb1.toString().trim(), sb2.toString().trim()};
     }
 
-    public NonogramSolver(String filepath) {
-        String[] puzzleData = new String[1];
+    public NonogramSolver(ArrayList<Integer>[] array,int n) {
+        String[] puzzleData = convert(array,n);
 
         newPuzzle(puzzleData);
     }

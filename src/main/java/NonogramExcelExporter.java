@@ -24,7 +24,7 @@ public class NonogramExcelExporter {
         writeRowData(this.nonogramArray, this.columns, sheet, rowStyle);
         sheet.autoSizeColumn(1);
         for (int i = 2; i <columns+30 ; i++) {
-            sheet.setColumnWidth(i,4 * 256);
+            sheet.setColumnWidth(i,3 * 256);
         }
         this.path=saveFile(this.fileName, workbook);
         System.out.println("Your nonogram is saved as Excel file to path: "+this.getPath());
@@ -53,8 +53,8 @@ public class NonogramExcelExporter {
             Cell dataCell = dataRow.createCell(i + 2 - columns);
             String columnHeader = String.valueOf((i + 1 - columns));
             StringBuilder columnData = new StringBuilder();
-            for (int j = 0; j < nonogramArray[i].size(); j++) {
-                columnData.append(nonogramArray[i].get(j) + ", ");
+            for (int j = nonogramArray[i].size(); j > 0; j--) {
+                columnData.append(nonogramArray[i].get(j-1) + ", ");
             }
             if (columnData.length() > 0 && columnData.charAt(columnData.length() - 2) == ',') {
                 columnData.deleteCharAt(columnData.length() - 2);

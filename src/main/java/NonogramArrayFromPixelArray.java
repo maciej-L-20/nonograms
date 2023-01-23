@@ -1,12 +1,15 @@
 import java.util.ArrayList;
 
 public class NonogramArrayFromPixelArray {
+    static ArrayList<Integer>[] nonogramArray;
+    static int[][] pixelArray;
+
     NonogramArrayFromPixelArray(String path, int columns, int rows){
         new ImageProcessor(path, columns, rows);
-        int[][] pixelArray = ImageProcessor.getPixelArray();
+        pixelArray = ImageProcessor.getPixelArray();
 
         // Create the array of ArrayLists
-        ArrayList<Integer>[] nonogramArray = new ArrayList[pixelArray.length + pixelArray[1].length];
+        nonogramArray = new ArrayList[pixelArray.length + pixelArray[1].length];
         for (int i = 0; i < nonogramArray.length; i++) {
             nonogramArray[i] = new ArrayList<>();
         }
@@ -49,16 +52,15 @@ public class NonogramArrayFromPixelArray {
             }
             index++;
         }
-        new NonogramExcelExporter(nonogramArray, pixelArray[1].length,"Nonogram");
-        new NonogramArrayDisplay(nonogramArray, pixelArray[1].length);
     }
+
     //Constructor for choosing the level
     NonogramArrayFromPixelArray(String path, int level){
         ImageProcessor imageProcessor = new ImageProcessor(path, level);
-        int[][] pixelArray = ImageProcessor.getPixelArray();
+        pixelArray = ImageProcessor.getPixelArray();
 
         // Create the array of ArrayLists
-        ArrayList<Integer>[] nonogramArray = new ArrayList[pixelArray.length + pixelArray[1].length];
+        nonogramArray = new ArrayList[pixelArray.length + pixelArray[1].length];
         for (int i = 0; i < nonogramArray.length; i++) {
             nonogramArray[i] = new ArrayList<>();
         }
@@ -101,7 +103,12 @@ public class NonogramArrayFromPixelArray {
             }
             index++;
         }
-        new NonogramExcelExporter(nonogramArray, pixelArray[1].length,"Nonogram");
-        new NonogramArrayDisplay(nonogramArray, pixelArray[1].length);
+    }
+
+    public static ArrayList<Integer>[] getNonogramArray() {
+        return nonogramArray;
+    }
+    public static int[][] getPixelArray() {
+        return pixelArray;
     }
 }
