@@ -18,9 +18,10 @@ public class NonogramExcelExporter {
         this.fileName = fileName;
         Workbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("Nonogram");
-        CellStyle style = workbook.createCellStyle();
-        writeColumnData(this.nonogramArray,this.columns,sheet,style);
-        writeRowData(this.nonogramArray,this.columns,sheet,style);
+        CellStyle collumnStyle = workbook.createCellStyle();
+        CellStyle rowStyle = workbook.createCellStyle();
+        writeColumnData(this.nonogramArray,this.columns,sheet,collumnStyle);
+        writeRowData(this.nonogramArray,this.columns,sheet,rowStyle);
         for (int i = 0; i <columns ; i++) {
             sheet.autoSizeColumn(i);
         }
@@ -90,7 +91,16 @@ public class NonogramExcelExporter {
             }
 
             //Styling cells - no rotation
-            //style.setRotation((short) 0);
+            style.setBorderBottom(BorderStyle.THIN);
+            style.setBottomBorderColor(IndexedColors.BLACK.getIndex());
+            style.setBorderLeft(BorderStyle.THIN);
+            style.setLeftBorderColor(IndexedColors.BLACK.getIndex());
+            style.setBorderRight(BorderStyle.THIN);
+            style.setRightBorderColor(IndexedColors.BLACK.getIndex());
+            style.setBorderTop(BorderStyle.THIN);
+            style.setTopBorderColor(IndexedColors.BLACK.getIndex());
+            style.setFillBackgroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+
 
             headerCell.setCellValue(rowHeader);
             dataCell.setCellValue(rowData.toString());
