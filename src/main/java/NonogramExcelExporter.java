@@ -22,8 +22,8 @@ public class NonogramExcelExporter {
         CellStyle rowStyle = workbook.createCellStyle();
         writeColumnData(this.nonogramArray,this.columns,sheet,collumnStyle);
         writeRowData(this.nonogramArray,this.columns,sheet,rowStyle);
-        for (int i = 0; i <columns ; i++) {
-            sheet.autoSizeColumn(i);
+        for (int i = 2; i <columns+30 ; i++) {
+            sheet.setColumnWidth(i,4 * 256);
         }
         this.path=saveFile(this.fileName, workbook);
         System.out.println("Your nonogram is saved as Excel file to path: "+this.getPath());
