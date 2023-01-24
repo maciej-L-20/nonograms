@@ -8,5 +8,7 @@ out/
 README.md
 Nonograms.iml
 /.idea/
-#processed
+#processed pictures
 *_processed.png
+#excels nonograms
+*.xlsx
