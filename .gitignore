@@ -8,3 +8,5 @@ out/
 README.md
 Nonograms.iml
 /.idea/
+#processed
+*_processed.png
