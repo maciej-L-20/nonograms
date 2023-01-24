@@ -101,6 +101,7 @@ public class ConsoleInterface {
         pictures.add("Mushroom");
         pictures.add("Pikachu");
         pictures.add("Bitcoin");
+        pictures.add("Panda");
         new ConsoleInterface();
     }
     //Method to let a user choose the level
