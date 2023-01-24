@@ -68,11 +68,10 @@ public class ConsoleInterface {
 
     private void solver() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter number of columns: ");
-        int columns = sc.nextInt();
         System.out.print("Enter number of rows: ");
         int rows = sc.nextInt();
-
+        System.out.print("Enter number of columns: ");
+        int columns = sc.nextInt();
         ArrayList<Integer>[] nonogramArray = new ArrayList[rows + columns];
         for (int i = 0; i < nonogramArray.length; i++) {
             nonogramArray[i] = new ArrayList<Integer>();
