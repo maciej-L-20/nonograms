@@ -14,6 +14,8 @@ public class ConsoleInterface {
             solver();
         } else if (temp == 3) {
             generatorWithSolver();
+        } else {
+            new ConsoleInterface();
         }
     }
 
@@ -33,6 +35,7 @@ public class ConsoleInterface {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Type 1 to generate from your path or different number to use ready pictures.");
         if (scanner.nextInt() == 1) {
+            scanner.nextLine();
             System.out.println("Type the picture path");
             String path = scanner.nextLine();
             existingChecker(path);
