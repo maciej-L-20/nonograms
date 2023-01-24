@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ConsoleInterface {
+    public static ArrayList<String> pictures;
     ConsoleInterface() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Type 1 for nonogram generator, 2 for nonogram solver, 3 for nonogram generator that tests the output");
@@ -18,15 +19,35 @@ public class ConsoleInterface {
 
     private void generator() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Type the picture path");
-        String path = scanner.nextLine();
-        existingChecker(path);
-        System.out.println("Type any number if you want to choose level or type 0 if you want to choose sizes manually.");
+        System.out.println("Type 1 to generate from your path or different number to use ready pictures.");
+        if (scanner.nextInt() == 1) {
+            System.out.println("Type the picture path");
+            String path = scanner.nextLine();
+            existingChecker(path);
+            System.out.println("Type any number if you want to choose level or type 0 if you want to choose sizes manually.");
             if (scanner.nextInt() == 0) {
                 sizeGenerator(scanner, path);
             } else {
                 levelGenerator(scanner, path);
             }
+        }
+        else {
+            readyPictures(scanner);
+        }
+    }
+
+    private void readyPictures (Scanner scanner) {
+        Scanner scanner1 =new Scanner(System.in);
+        System.out.println("Choose the Picture. Currently avaiable:");
+        System.out.println(pictures.toString());
+        String path = "TestPictures/" + scanner1.nextLine()+".png";
+        existingChecker(path);
+        System.out.println("Type any number if you want to choose level or type 0 if you want to choose sizes manually.");
+        if (scanner.nextInt() == 0) {
+            sizeGenerator(scanner, path);
+        } else {
+            levelGenerator(scanner, path);
+        }
     }
 
     private void solver() {
@@ -74,6 +95,11 @@ public class ConsoleInterface {
     }
 
     public static void main(String[] args) {
+        pictures=new ArrayList<>();
+        pictures.add("Dinosaur");
+        pictures.add("Fire");
+        pictures.add("Mushroom");
+        pictures.add("Pikachu");
         new ConsoleInterface();
     }
     //Method to let a user choose the level
@@ -137,11 +163,13 @@ public class ConsoleInterface {
     }
 
     //Checks file existance
-    private void existingChecker(String path){
+    private boolean existingChecker(String path){
         File file = new File(path);
         if (!file.exists()) {
             System.out.println("File not found");
             new ConsoleInterface();
+            return false;
         }
+        return true;
     }
 }
