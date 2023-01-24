@@ -25,6 +25,7 @@ public class ConsoleInterface {
         pictures.add("Pikachu");
         pictures.add("Bitcoin");
         pictures.add("Panda");
+        pictures.add("Reindeer");
         new ConsoleInterface();
     }
 
