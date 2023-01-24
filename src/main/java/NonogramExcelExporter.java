@@ -127,7 +127,9 @@ public class NonogramExcelExporter {
             dataCell.setCellStyle(style);
         }
     }
+
 }
+
 
 
 

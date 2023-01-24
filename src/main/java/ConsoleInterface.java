@@ -30,18 +30,34 @@ public class ConsoleInterface {
     }
 
     private void solver() {
-        Scanner scanner = new Scanner(System.in);
-        String path = scanner.nextLine();
-        existingChecker(path);
-        System.out.println("Type any number if you want to choose level or type 0 if you want to choose sizes manually.");
-        if (scanner.nextInt() == 1) {
-            sizeGenerator(scanner, path);
-        } else if (scanner.nextInt() == 2) {
-            levelGenerator(scanner, path);
-        } else if (scanner.nextInt() == 3) {
-            levelGenerator(scanner, path);
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter number of columns: ");
+        int columns = sc.nextInt();
+        System.out.print("Enter number of rows: ");
+        int rows = sc.nextInt();
+
+        ArrayList<Integer>[] nonogramArray = new ArrayList[rows + columns];
+        for (int i = 0; i < nonogramArray.length; i++) {
+            nonogramArray[i] = new ArrayList<Integer>();
         }
+
+        System.out.println("Enter values for the nonogramArray (values separated by space, new line for new ArrayList in array): ");
+        sc.nextLine();
+        for (int i = 0; i < nonogramArray.length; i++) {
+            String inputLine = sc.nextLine().trim();
+            if (!inputLine.isEmpty()) {
+                String[] input = inputLine.split(" ");
+                for (String s : input) {
+                    nonogramArray[i].add(Integer.parseInt(s));
+                }
+            }
+        }
+
+        new NonogramSolver(nonogramArray, rows);
+
+        sc.close();
     }
+
 
     private void generatorWithSolver() {
         Scanner scanner = new Scanner(System.in);
