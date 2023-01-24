@@ -136,7 +136,7 @@ public class NonogramSolver {
             commonOn.set(0, b.size());
             BitSet commonOff = new BitSet();
 
-            // determine which values all candidates of ai have in common
+            // determine which values all candidates of all have in common
             for (BitSet candidate : a.get(i)) {
                 commonOn.and(candidate);
                 commonOff.or(candidate);
