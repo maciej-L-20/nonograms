@@ -61,7 +61,7 @@ public class NonogramExcelExporter {
             }
 
             //Styling cells - black thin borders, counterclockwise rotation
-            style.setRotation((short) 45);
+            style.setRotation((short) 60);
             style.setBorderBottom(BorderStyle.THIN);
             style.setBottomBorderColor(IndexedColors.BLACK.getIndex());
             style.setBorderLeft(BorderStyle.THIN);
