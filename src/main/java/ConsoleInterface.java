@@ -17,6 +17,17 @@ public class ConsoleInterface {
         }
     }
 
+    public static void main(String[] args) {
+        pictures=new ArrayList<>();
+        pictures.add("Dinosaur");
+        pictures.add("Fire");
+        pictures.add("Mushroom");
+        pictures.add("Pikachu");
+        pictures.add("Bitcoin");
+        pictures.add("Panda");
+        new ConsoleInterface();
+    }
+
     private void generator() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Type 1 to generate from your path or different number to use ready pictures.");
@@ -79,7 +90,6 @@ public class ConsoleInterface {
         sc.close();
     }
 
-
     private void generatorWithSolver() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Type the picture path");
@@ -94,16 +104,6 @@ public class ConsoleInterface {
         }
     }
 
-    public static void main(String[] args) {
-        pictures=new ArrayList<>();
-        pictures.add("Dinosaur");
-        pictures.add("Fire");
-        pictures.add("Mushroom");
-        pictures.add("Pikachu");
-        pictures.add("Bitcoin");
-        pictures.add("Panda");
-        new ConsoleInterface();
-    }
     //Method to let a user choose the level
     private void levelGenerator(Scanner scanner, String path) {
         System.out.println("Choose level from 1-4.");
